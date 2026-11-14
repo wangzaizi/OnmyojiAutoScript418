@@ -1,0 +1,152 @@
+[
+  {
+    "itemName": "story_back",
+    "imageName": "res_story_back.png",
+    "roiFront": "21,21,42,45",
+    "roiBack": "0,0,100,100",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "story_fight",
+    "imageName": "res_story_fight.png",
+    "roiFront": "495,304,38,39",
+    "roiBack": "0,0,1280,720",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "story_chat_1",
+    "imageName": "res_story_chat_1.png",
+    "roiFront": "456,222,44,21",
+    "roiBack": "0,0,1280,720",
+    "method": "Template matching",
+    "threshold": 0.7,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "story_chat_2",
+    "imageName": "res_story_chat_2.png",
+    "roiFront": "712,274,23,36",
+    "roiBack": "0,0,1280,720",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "story_video_skip",
+    "imageName": "res_story_video_skip.png",
+    "roiFront": "1196,41,34,38",
+    "roiBack": "1178,21,75,76",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "story_video_skip_confirm",
+    "imageName": "res_story_video_skip_confirm.png",
+    "roiFront": "716,447,118,31",
+    "roiBack": "698,416,156,83",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "story_onmyoji_eye",
+    "imageName": "res_story_onmyoji_eye.png",
+    "roiFront": "589,176,56,40",
+    "roiBack": "0,0,1280,720",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "story_chat_skip",
+    "imageName": "res_story_chat_skip.png",
+    "roiFront": "839,560,59,23",
+    "roiBack": "804,539,124,57",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "new_onmyoji_red_close",
+    "imageName": "res_new_onmyoji_red_close.png",
+    "roiFront": "1148,72,42,45",
+    "roiBack": "1122,38,100,100",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "loading_2",
+    "imageName": "res_loading_2.png",
+    "roiFront": "606,294,66,98",
+    "roiBack": "577,258,122,191",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "loading_1",
+    "imageName": "res_loading_1.png",
+    "roiFront": "606,343,80,35",
+    "roiBack": "577,324,130,76",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "profile": "High",
+    "description": ""
+  },
+  {
+    "itemName": "story_chat_right_edge",
+    "imageName": "res_story_chat_right_edge.png",
+    "roiFront": "1247,280,33,56",
+    "roiBack": "1210,100,70,480",
+    "method": "Template matching",
+    "threshold": 0.85,
+    "profile": "High",
+    "description": "被屏幕右侧截断的剧情对话气泡"
+  },
+  {
+    "itemName": "personalized_content",
+    "imageName": "res_personalized_content.png",
+    "roiFront": "501,82,266,44",
+    "roiBack": "470,65,330,75",
+    "method": "Template matching",
+    "threshold": 0.85,
+    "profile": "High",
+    "description": "个性化内容推荐弹窗标题"
+  },
+  {
+    "itemName": "new_feature_unlocked",
+    "imageName": "res_new_feature_unlocked.png",
+    "roiFront": "570,414,141,35",
+    "roiBack": "530,390,220,75",
+    "method": "Template matching",
+    "threshold": 0.85,
+    "profile": "High",
+    "description": "新功能开启弹窗标题"
+  },
+  {
+    "itemName": "exploration_intro",
+    "imageName": "res_exploration_intro.png",
+    "roiFront": "474,95,350,52",
+    "roiBack": "440,75,410,90",
+    "method": "Template matching",
+    "threshold": 0.85,
+    "profile": "High",
+    "description": "首次探索玩法介绍"
+  }
+]
