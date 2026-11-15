@@ -124,6 +124,7 @@ class GhostOffering:
     INVITE_RETRY_SECONDS = 20
     # 好友行点击被吞（面板滑入动画）时的补点间隔
     CLICK_RETRY_SECONDS = 1.2
+    PORTRAIT_STAR_CENTERS = (13, 23, 34, 45, 56, 67)
 
     def __init__(self, task, link=None):
         self.task = task
@@ -139,6 +140,30 @@ class GhostOffering:
         t = self.task
         return (datetime.now() - t.start_time < t.limit_time and
                 t.total_count < t.limit_count and not t.State.done)
+
+    @classmethod
+    def detect_portrait_star(cls, image, area):
+        x, y, width, height = map(int, area)
+        if (image is None or image.ndim != 3 or image.shape[2] != 3
+                or width < cls.PORTRAIT_STAR_CENTERS[-1] + 4 or height < 80
+                or x < 0 or y < 0
+                or x + width > image.shape[1] or y + 80 > image.shape[0]):
+            return None
+        strip = image[y + 66:y + 80, x:x + width]
+        purple = ((strip[:, :, 0] > 120) & (strip[:, :, 2] > 100)
+                  & (strip[:, :, 1] < 130)
+                  & (strip[:, :, 0] > strip[:, :, 1] * 1.25))
+        fractions = [
+            float(np.count_nonzero(purple[:, center - 4:center + 4])) / (purple.shape[0] * 8)
+            for center in cls.PORTRAIT_STAR_CENTERS
+        ]
+        if any(0.08 < fraction < 0.24 for fraction in fractions):
+            return None
+        illuminated = [fraction >= 0.24 for fraction in fractions]
+        stars = sum(illuminated)
+        if stars == 0 or illuminated != [True] * stars + [False] * (6 - stars):
+            return None
+        return BossType(stars)
 
     @staticmethod
     def normalize_name(name):
@@ -393,6 +418,12 @@ class GhostOffering:
             return True
         if not self.settled and t.appear(t.I_MD_FIRE):
             self.empty_frames = 0
+            if t.cur_boss_type is None:
+                detected_star = self.detect_portrait_star(
+                    t.device.image, t.I_SHARE_DEMON.roi_back)
+                if detected_star is not None:
+                    t.cur_boss_type = detected_star
+                    logger.info(f'从鬼王头像下方紫色图标识别到 {int(detected_star)} 星')
             unqualified = t.cur_boss_type not in self.settings.offering_star.stars
             if unqualified and not self.unknown_reported:
                 logger.warning(
