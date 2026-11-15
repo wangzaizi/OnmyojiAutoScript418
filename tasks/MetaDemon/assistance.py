@@ -311,9 +311,9 @@ class GhostOffering:
         logger.warning('未确认好友分享完成，停止本次上供')
         return False
 
-    def share(self):
+    def share(self, *, allow_unqualified=False):
         t = self.task
-        if t.cur_boss_type not in self.settings.offering_star.stars:
+        if not allow_unqualified and t.cur_boss_type not in self.settings.offering_star.stars:
             logger.warning(f'仅允许分享本次已确认召唤的{self.settings.offering_star.value}鬼王')
             return False
         if self.link is None:
@@ -393,12 +393,15 @@ class GhostOffering:
             return True
         if not self.settled and t.appear(t.I_MD_FIRE):
             self.empty_frames = 0
-            if t.cur_boss_type not in self.settings.offering_star.stars:
-                if not self.unknown_reported:
-                    logger.warning(f'已有鬼王星级未确认或不满足上供要求，不分享、不挑战；等待其消失后仅召唤{self.settings.offering_star.value}')
-                    self.unknown_reported = True
-            elif self.shared_generation != t._boss_generation:
-                if not self.share():
+            unqualified = t.cur_boss_type not in self.settings.offering_star.stars
+            if unqualified and not self.unknown_reported:
+                logger.warning(
+                    f'已有鬼王星级未确认或不满足上供要求，仍分享给设置的好友；'
+                    f'等待其消失后仅召唤{self.settings.offering_star.value}'
+                )
+                self.unknown_reported = True
+            if self.shared_generation != t._boss_generation:
+                if not self.share(allow_unqualified=unqualified):
                     return False
                 self.shared_generation = t._boss_generation
             self.waiting = True

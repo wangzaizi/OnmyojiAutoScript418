@@ -477,7 +477,7 @@ class GameUi(ChessBattleNavigationMixin, BaseTask, GameUiAssets):
             context="goto_page",
         )
 
-    def _wait_for_destination(self, destination: Page, timeout: float = 4.0) -> bool:
+    def _wait_for_destination(self, destination: Page, timeout: float = 12.0) -> bool:
         """等待下一页面稳定出现。
 
         Args:
